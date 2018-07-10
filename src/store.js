@@ -5,11 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: true,
+  // namespaced: true,
   state: {
     todo: {},
     todoLoading: false,
     cacheTodoDone: false
-  }, 
+  },
   mutations: {
     loading(state, status) {
       state.todoLoading = status;
@@ -20,7 +21,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    cacheTodo({commit}, value = 99) {
+    cacheTodo({ commit }, value = 99) {
       commit('loading', true)
 
       return fetch('https://jsonplaceholder.typicode.com/todos/' + value)
@@ -28,8 +29,8 @@ export default new Vuex.Store({
         .then(t => commit('cacheTodo', t))
         .finally(() => commit('loading', false))
     },
-    getSome({dispatch}, value) {
+    getSome({ dispatch }, value) {
       dispatch('cacheTodo', value)
     }
-  }
+  },
 })

@@ -6,6 +6,7 @@ import Todo from './components/Todo.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

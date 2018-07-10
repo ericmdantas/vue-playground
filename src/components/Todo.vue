@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
+    import {mapActions, mapState} from 'vuex'
     import store from '../store'
 
     export default {
@@ -23,18 +23,14 @@
             })
         },
         mounted() {
-            store.dispatch('cacheTodo')
+            this.some(99)
         },
         computed: {
-            todo() {
-                return store.state.todo
-            },
-            todoLoading() {
-                return store.state.todoLoading
-            },
-            todoCached() {
-                return store.state.cacheTodoDone
-            }
+            ...mapState({
+                todo: state => state.todo,
+                todoLoading: state => state.todoLoading,
+                todoCached: state => state.cacheTodoDone,
+            })
         }
     }
 </script>
