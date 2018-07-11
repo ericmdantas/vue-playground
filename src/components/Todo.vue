@@ -1,15 +1,7 @@
 <template>
     <div>
         <div class="loading-container">
-            <!-- <div v-for="t in todos" :key="t.id" v-show="!loadingTodos">
-                <pre class="todo" 
-                     :class="{
-                         'todo-selected': t.selected
-                     }"
-                     @click="goGetItHandler(t)">id: {{t.id}}</pre>
-            </div> -->
-
-            <div v-for="t in oddTodos" :key="t.id" v-show="!loadingTodos">
+            <div v-for="t in todos" :key="t.id" v-show="!loadingTodos">
                 <pre class="todo" 
                      :class="{
                          'todo-selected': t.selected
@@ -18,6 +10,14 @@
             </div>
 
             <!-- <div v-for="t in evenTodos" :key="t.id" v-show="!loadingTodos">
+                <pre class="todo" 
+                     :class="{
+                         'todo-selected': t.selected
+                     }"
+                     @click="goGetItHandler(t)">id: {{t.id}}</pre>
+            </div> -->
+
+            <!-- <div v-for="t in oddTodos" :key="t.id" v-show="!loadingTodos">
                 <pre class="todo" 
                      :class="{
                          'todo-selected': t.selected

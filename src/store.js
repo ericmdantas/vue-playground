@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Todo from './models/todo'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   strict: true,
   state: {
-    todo: {},
+    todo: new Todo(),
     todos: [],
     todosCache: [],
     loadingTodo: false,
@@ -20,15 +21,17 @@ export default new Vuex.Store({
       state.loadingTodos = status
     },
     cacheTodo(state, todo) {
-      state.todo = todo
+      state.todo = new Todo(todo)
     },
     cacheTodos(state, todos) {
       todos.forEach((t) => {
         t.selected = false
       })
 
-      state.todos = todos
-      state.todosCache = todos
+      const todosInstance = todos.map(t => new Todo(t))
+
+      state.todos = todosInstance
+      state.todosCache = todosInstance
     },
     selectTodo(state, todoId) {
       state.todos.forEach((t) => {

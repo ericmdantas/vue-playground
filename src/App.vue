@@ -6,8 +6,14 @@
     </div>
 
     <div class="todo-selected">
-      <pre v-show="!loadingTodo">{{todo}}</pre>
-      <pre v-show="loadingTodo">Loading...</pre>
+      <p v-show="!loadingTodo && todo.isValid()">
+        <span>{{todo.title}}</span>
+      </p>
+
+      <p v-show="!loadingTodo && !todo.isValid()">
+        <span>nothing todo</span>
+      </p>
+      <p v-show="loadingTodo">Loading...</p>
     </div>
 
     <router-view/>
