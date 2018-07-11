@@ -22,14 +22,18 @@ export default new Vuex.Store({
       state.todo = todo
     },
     cacheTodos(state, todos) {
+      todos.forEach((t) => {
+        t.selected = false
+      })
+
       state.todos = todos
     },
     selectTodo(state, todoId) {
       state.todos.forEach((t) => {
         if (t.id === todoId) {
-          Vue.set(t, 'selected', true)
+          t.selected = true
         } else {
-          Vue.set(t, 'selected', false)
+          t.selected = false
         }
       })
     },
