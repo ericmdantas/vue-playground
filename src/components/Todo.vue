@@ -10,10 +10,8 @@
 
 <script>
     import {mapActions, mapState} from 'vuex'
-    import store from '../store'
 
     export default {
-        store,
         methods: {
             someHandler() {
                 this.some(Date.now() % 100)
