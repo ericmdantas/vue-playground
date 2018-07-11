@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     todo: {},
     todos: [],
+    todosCache: [],
     loadingTodo: false,
     loadingTodos: false,
   },
@@ -27,6 +28,7 @@ export default new Vuex.Store({
       })
 
       state.todos = todos
+      state.todosCache = todos
     },
     selectTodo(state, todoId) {
       state.todos.forEach((t) => {
@@ -41,6 +43,14 @@ export default new Vuex.Store({
       state.todos.forEach((t) => {
         t.selected = false
       })
+    },
+  },
+  getters: {
+    evenTodos(state) {
+      return state.todos.filter((t) => t.id % 2 === 0)
+    },
+    oddTodos(state) {
+      return state.todos.filter((t) => t.id % 2 === 1)
     },
   },
   actions: {

@@ -1,13 +1,29 @@
 <template>
     <div>
         <div class="loading-container">
-            <div v-for="t in todos" :key="t.id" v-show="!loadingTodos">
+            <!-- <div v-for="t in todos" :key="t.id" v-show="!loadingTodos">
                 <pre class="todo" 
                      :class="{
                          'todo-selected': t.selected
                      }"
-                     @click="goGetItHandler(t)">{{t}}</pre>
+                     @click="goGetItHandler(t)">id: {{t.id}}</pre>
+            </div> -->
+
+            <div v-for="t in oddTodos" :key="t.id" v-show="!loadingTodos">
+                <pre class="todo" 
+                     :class="{
+                         'todo-selected': t.selected
+                     }"
+                     @click="goGetItHandler(t)">id: {{t.id}}</pre>
             </div>
+
+            <!-- <div v-for="t in evenTodos" :key="t.id" v-show="!loadingTodos">
+                <pre class="todo" 
+                     :class="{
+                         'todo-selected': t.selected
+                     }"
+                     @click="goGetItHandler(t)">id: {{t.id}}</pre>
+            </div> -->
 
             <div v-show="loadingTodos">
                 <p align="center">Loading</p>
@@ -17,7 +33,7 @@
 </template>
 
 <script>
-    import {mapActions, mapMutations, mapState} from 'vuex'
+    import {mapActions, mapMutations, mapState, mapGetters} from 'vuex'
 
     export default {
         methods: {
@@ -42,6 +58,10 @@
                 todo: state => state.todo,
                 todos: state => state.todos,
                 loadingTodos: state => state.loadingTodos,
+            }),
+            ...mapGetters({
+                evenTodos: 'evenTodos',
+                oddTodos: 'oddTodos',
             })
         }
     }
