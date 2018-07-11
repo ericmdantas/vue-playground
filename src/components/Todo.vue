@@ -1,41 +1,54 @@
 <template>
     <div>
-        <div class="loading-container" :class="{'is-loading': todoLoading}">
-            <pre>{{todo}}</pre>
-            <pre>{{todoCached}}</pre>
-            <button type="button" @click="someHandler()">next</button>
+        <div class="loading-container">
+            <div v-for="t in todos" :key="t.id" v-show="!loadingTodos">
+                <pre class="todo" 
+                     :class="{
+                         'todo-selected': t.selected
+                     }"
+                     @click="goGetItHandler(t)">{{t}}</pre>
+            </div>
+
+            <div v-show="loadingTodos">
+                <p align="center">Loading</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapActions, mapState} from 'vuex'
+    import {mapActions, mapMutations, mapState} from 'vuex'
 
     export default {
         methods: {
-            someHandler() {
-                this.some(Date.now() % 100)
-            },
             ...mapActions({
-                some: 'getSome'
-            })
+                cacheTodos: 'cacheTodos',
+                goGetIt: 'getById',
+            }),
+            ...mapMutations({
+                selectTodo: 'selectTodo',
+                unselectTodo: 'unselectTodo',
+            }),
+            goGetItHandler(todo) {
+                this.selectTodo(todo.id)
+                this.goGetIt(todo.id)
+            }
         },
         mounted() {
-            this.some(99)
+            this.cacheTodos()
         },
         computed: {
             ...mapState({
                 todo: state => state.todo,
-                todoLoading: state => state.todoLoading,
-                todoCached: state => state.cacheTodoDone,
+                todos: state => state.todos,
+                loadingTodos: state => state.loadingTodos,
             })
         }
     }
 </script>
 
 <style scoped>
-.loading-container.is-loading {
-    background-color: #f1f2f3;
-    border: 1px solid blue;
-}
+    .todo-selected {
+        border: 1px solid orange;
+    }
 </style>
