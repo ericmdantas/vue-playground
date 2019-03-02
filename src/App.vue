@@ -1,58 +1,77 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <a href="#" @click="goToTodo()">Todo</a> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <section class="basic-style">
+        <h1> 1. Basic Style</h1>
+        
+        <div class="hv-container">
+            <div class="hv-wrapper">
 
-    <div class="todo-selected">
-      <p v-show="!loadingTodo && todo.isValid()">
-        <span>{{todo.title}}</span>
-      </p>
+                <div class="hv-item">
 
-      <p v-show="!loadingTodo && !todo.isValid()">
-        <span>nothing todo</span>
-      </p>
-      <p v-show="loadingTodo">Loading...</p>
-    </div>
+                    <div class="hv-item-parent">
+                        <p class="simple-card"> Parent </p>
+                    </div>
 
-    <router-view/>
+                    <div class="hv-item-children">
+
+                        <div class="hv-item-child">
+                            <div class="hv-item">
+
+                                <div class="hv-item-parent">
+                                    <p class="simple-card"> Parent </p>
+                                </div>
+
+                                <div class="hv-item-children">
+
+                                    <div class="hv-item-child">
+                                        <p class="simple-card"> Child 1 </p>
+                                    </div>
+
+
+                                    <div class="hv-item-child">
+                                        <p class="simple-card"> Child 2 </p>
+                                    </div>
+
+                                    <div class="hv-item-child">
+                                        <p class="simple-card"> Child 2 </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="hv-item-child">
+                            <p class="simple-card"> Child 2 </p>
+                        </div>
+
+                        <div class="hv-item-child">
+                            <p class="simple-card"> Child 3 </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
   </div>
 </template>
 
 <script>
-  import {mapState} from 'vuex'
-  import router from './router'
+import "./assets/arvore.scss"
+import service from './app.service'
 
-  export default {
-    router,
-    methods: {
-      goToTodo() {
-        this.$router.push('/')
-      }
-    },
-    computed: {
-      ...mapState({
-        todo: state => state.todo,
-        loadingTodo: state => state.loadingTodo,
-      })
-    }
-  }
+export default {
+  data() {
+    return {
+      tree: []
+    }   
+  },
+  async mounted() {
+    this.tree = await service.getTree()
+  },
+}
 </script>
-
-<style scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.todo-selected {
-  margin-top: 15px;
-  border: 1px solid blue;
-  background-color: #f1f2f3;
-}
-</style>
