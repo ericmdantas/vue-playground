@@ -33,12 +33,39 @@
                                     </div>
 
                                     <div class="hv-item-child">
-                                        <p class="simple-card"> Child 2 </p>
+                                        <p class="simple-card"> Child 3 </p>
                                     </div>
 
+                                    <div class="hv-item-child">
+                                        <p class="simple-card"> Child 4 </p>
+                                    </div>
+
+
+                                    <div class="hv-item-child">
+                                        <p class="simple-card"> Child 5 </p>
+                                    </div>
                                 </div>
 
                             </div>
+                        </div>
+
+                        <div class="hv-item-child">
+                          <div class="hv-item">
+                              <div class="hv-item-parent">
+                                  <p class="simple-card"> Parent </p>
+                              </div>
+
+                              <div class="hv-item-children">
+
+                              <div class="hv-item-child">
+                                <p class="simple-card"> Child 1 </p>
+                              </div>
+
+                              <div class="hv-item-child">
+                                <p class="simple-card"> Child 2 </p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
 
 
